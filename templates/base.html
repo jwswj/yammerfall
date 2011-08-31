@@ -2,7 +2,8 @@
  "http://www.w3.org/TR/html4/strict.dtd">
 <html>
 <head>
-	<title>YammerFall</title>
+	<script type="text/javascript">var _sf_startpt=(new Date()).getTime()</script>
+	<title>YammerWall</title>
 	<link rel="stylesheet" href="/styles/web.css" type="text/css">
 	<script type="text/javascript" src="/js/jquery-1.3.min.js"></script>
 	<script type="text/javascript" src="/js/date.js"></script>
@@ -15,27 +16,52 @@
 		  });
 		});
 	</script>
+
+	<script type="text/javascript">
+
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-24830730-1']);
+	  _gaq.push(['_trackPageview']);
+
+	  (function() {
+	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
+
+	</script>
+
+
 </head>
 <body>
 	<span class="yammerfall">
+
 	<div class="message" id="logos">
-		  <div class="yammer">
-		    <!-- content goes here -->
-			<h2>
-			<img src="https://assets1.yammer.com/images/YammerIconApp126x126.jpg" height="50">
-			&nbsp;&nbsp;Yammerfall
-			</h2>
-			<div id="description">
-			<b>Yammer</b> is a verified social network. You can share info on your profile (like Facebook) and connect with others through updates (like Twitter.)
-			</br>
-			<b>Yammerfall</b> is an app that displays the latest updates of your entire network.
-			</div>
-			<!-- content went here -->
-		  </div>
 	</div>
 	</span>
 		
 	{% block mainpanel %}
 	{% endblock %}
+	
+	<script type="text/javascript">
+	var _sf_async_config={uid:26650,domain:"yammerwall.appspot.com"};
+	(function(){
+	  function loadChartbeat() {
+	    window._sf_endpt=(new Date()).getTime();
+	    var e = document.createElement('script');
+	    e.setAttribute('language', 'javascript');
+	    e.setAttribute('type', 'text/javascript');
+	    e.setAttribute('src',
+	       (("https:" == document.location.protocol) ? "https://a248.e.akamai.net/chartbeat.download.akamai.com/102508/" : "http://static.chartbeat.com/") +
+	       "js/chartbeat.js");
+	    document.body.appendChild(e);
+	  }
+	  var oldonload = window.onload;
+	  window.onload = (typeof window.onload != 'function') ?
+	     loadChartbeat : function() { oldonload(); loadChartbeat(); };
+	})();
+
+	</script>	
 </body>
+
 </html>

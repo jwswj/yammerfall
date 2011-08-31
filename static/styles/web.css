@@ -1,6 +1,7 @@
 body {
-	background-color: #BEC4CF;
-	font-family: "Helvetica Neue", "Helvetica", "Arial", Sans-serif;
+	background: rgb(1,0,102) url('../images/DeloitteLogo.png') no-repeat 38px 30px;
+	margin-top:100px;
+	font-family: sans-serif;
 }
 
 span.yammerfall {
@@ -9,7 +10,7 @@ span.yammerfall {
 
 span.userimg {
 	float:left;
-	padding: 15px;
+	padding: 10px 15px 15px 0;
 }
 
 
@@ -19,36 +20,44 @@ div.message {
 }
 
 .yammer {
-	-webkit-border-radius: 10px;
-	-khtml-border-radius: 10px;	
-	-moz-border-radius: 10px;
-	border-radius: 10px;
-	background-color: #FFFFFF;
+	background-color: #fff;
 	vertical-align: middle;
-	width: 625px;
 	padding-right: 20px;
 	padding-left: 20px;
 	padding-top: 5px;
 	padding-bottom: 5px;
 	font-size: 120%;
 	min-height: 80px;
-	color: #222222;
+	color: #333;
+	-webkit-border-radius: 6px;
+	 -khtml-border-radius: 6px;	
+	   -moz-border-radius: 6px;
+	        border-radius: 6px;
 }
+
+	.yammer h3 {
+		margin-bottom: 0;
+	}
+
+	.yammer span {
+		font-size: 70%;
+	}
 
 div.yammerer {
 	/*border-bottom: 2px solid #5B6F87;*/
 	padding-bottom: 0px;
-	margin-bottom: 15px;
+	margin-bottom: 10px;
+	margin-top: 5px;
 }
 
 strong.yammerer {
 	font-size: 80%;
-	color: #E91A38;
+	color: #00A1DE;
 	font-weight: bold;
 }
 
 span.creationdate {
-	padding-top: 10px;
+	padding-top: 15px;
 	font-size: 80%;
 	color: #999999;
 }
@@ -61,8 +70,12 @@ span.messageinfo {
 
 div.likedby {
 	font-size: 80%;
-	background-color: #FFFFFF;
+	background-color: #EEE;
 	color: #5B6F87;
+	-webkit-border-radius: 6px;
+	-khtml-border-radius: 6px;	
+	-moz-border-radius: 6px;
+	border-radius: 6px;
 }
 
 div.break-word {

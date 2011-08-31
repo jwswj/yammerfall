@@ -1,4 +1,4 @@
-application: yammerfall
+application: deloittewall
 version: 1-3
 runtime: python
 api_version: 1
@@ -9,9 +9,15 @@ handlers:
 
 - url: /images
   static_dir: static/images
-
+  
 - url: /js
   static_dir: static/js
-      
+        
 - url: .*
   script: main.py
+  secure: always
+
+- url: /
+  static_dir: /
+  secure: always
+  
