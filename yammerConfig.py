@@ -1,2 +1,2 @@
-CONSUMER_KEY = 'your consumer key goes here'
-CONSUMER_SECRET = 'your consumer secret goes here'
+CONSUMER_KEY = 'zkyNMjIWg8bhSPWuvIQg'
+CONSUMER_SECRET = 'CDFMGmZAiR7LjlYGlQ5jZJDirM7kU8hj45DBguGz8V4'
