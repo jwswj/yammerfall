@@ -84,12 +84,11 @@ div.break-word {
 
 a {
 	text-decoration: underline;
-	color: #000000;
+	color: #002776;
 }
 
 a:hover {
 	text-decoration: underline;
-	color: #222222;
 }
 
 input.formfield {
