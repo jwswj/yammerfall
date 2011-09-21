@@ -1,1 +1,3 @@
 Yammerfall is a Twitterfall-like app for the Yammer social network. It runs on GoogleAppEngine.
+
+Filtering by topic ID is supported using a querystring variable. Eg. http://url/?topic_id=[:id]
