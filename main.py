@@ -16,6 +16,7 @@ ACCESS_TOKEN_URL = 'https://www.yammer.com/oauth/access_token'
 USER_AUTH_URL = 'https://www.yammer.com/oauth/authorize'
 DEFAULT_API_PREFIX = 'https://www.yammer.com/api/v1/'
 DEFAULT_API_SUFFIX = '.json'
+TOPIC = ''
 
 HEADERS = {
 	'Content-Type': 'application/x-www-form-urlencoded',
@@ -64,7 +65,7 @@ class MainHandler(RequestHandler):
 			)
 	
 	def get(self):
-		
+
 		if self.request.get('expire_cookie', None) == 'now':
 			logging.debug('EXPIRING COOKIE')
 			self.expire_cookie()
@@ -73,9 +74,14 @@ class MainHandler(RequestHandler):
 		
 		if self.get_cookie():
 			logging.debug('GOT COOKIE! %s' % self.get_cookie())
-			template_values = {
-				'messagesUrl': '/messages?%s' % self.get_cookie(),
-			}
+			if self.request.get("topic_id"):
+				template_values = {
+					'messagesUrl': '/messages?%s%s' % (self.get_cookie(),'&topic_id='+self.request.get("topic_id")),
+				}
+			else:
+				template_values = {
+					'messagesUrl': '/messages?%s' % self.get_cookie(),
+				}
 			path = os.path.join(os.path.dirname(__file__), "templates/home.html")
 			self.response.out.write(template.render(path, template_values))
 			return
@@ -102,9 +108,8 @@ class MainHandler(RequestHandler):
 		}
 		path = os.path.join(os.path.dirname(__file__), "templates/login.html")
 		self.response.out.write(template.render(path, template_values))
+
 		return
-		
-		
 		
 	def post(self):
 		
@@ -122,10 +127,10 @@ class MainHandler(RequestHandler):
 		)
 		
 		logging.debug('AUTHORIZED: %s' % result.content)
-		
+
 		self.set_cookie(result.content)
 		self.redirect('/')
-		
+
 
 class MessagesHandler(RequestHandler):
 	def get(self):
@@ -133,8 +138,11 @@ class MessagesHandler(RequestHandler):
 		HEADERS['Authorization'] = getOAuthHeaders(
 			token = self.request.get('oauth_token'), 
 			token_secret = self.request.get('oauth_token_secret'))
-		MSGS_URL = '%smessages%s' % (DEFAULT_API_PREFIX, DEFAULT_API_SUFFIX)
-		
+		if self.request.get("topic_id"):
+			MSGS_URL = '%smessages/about_topic/%s%s' % (DEFAULT_API_PREFIX, self.request.get("topic_id"), DEFAULT_API_SUFFIX)
+		else:
+			MSGS_URL = '%smessages%s' % (DEFAULT_API_PREFIX, DEFAULT_API_SUFFIX)
+
 		result = urlfetch.fetch(
 			url=MSGS_URL,
 			method=urlfetch.GET,
@@ -145,6 +153,8 @@ class MessagesHandler(RequestHandler):
 		
 		#self.response.out.write(data)
 		
+		logging.debug('Got messages')
+
 		users = {}
 		ref_msgs = {}
 		for r in data['references']:
@@ -181,11 +191,12 @@ class MessagesHandler(RequestHandler):
 
 def main():
 	logging.getLogger().setLevel(logging.DEBUG)
+
 	application = WSGIApplication([
 		('/', MainHandler),
 		('/messages', MessagesHandler),
 	   ], debug=True)
-	
+
 	wsgiref.handlers.CGIHandler().run(application)
 
 if __name__ == '__main__':
